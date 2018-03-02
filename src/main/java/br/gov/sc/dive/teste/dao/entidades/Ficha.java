@@ -1,5 +1,6 @@
 package br.gov.sc.dive.teste.dao.entidades;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,8 +34,10 @@ public class Ficha implements Entidade {
 	@Column(name = "fl_ativo")
 	private Integer flAtivo = 1;
 
-	@OneToMany(mappedBy = "ficha")
+	@ManyToMany(targetEntity = Animal.class)
+	@JoinTable(name = "ficha_animal", joinColumns = @JoinColumn(name = "id_ficha"), inverseJoinColumns = @JoinColumn(name = "id_animal"))
 	private List<Animal> animais;
+
 
 	public Integer getIdFicha() {
 		return idFicha;
@@ -66,11 +72,10 @@ public class Ficha implements Entidade {
 	}
 
 	public List<Animal> getAnimais() {
+		if(animais==null) {
+			animais = new ArrayList<Animal>();
+		}
 		return animais;
-	}
-
-	public void setAnimais(List<Animal> animais) {
-		this.animais = animais;
 	}
 
 	@Override

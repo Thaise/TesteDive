@@ -31,7 +31,7 @@ public class FichaDao extends AbstractDao<Ficha> {
 		try {
 			QFicha ficha = QFicha.ficha;
 			JPQLQuery query = new JPAQuery(getEmPesquisa());
-			fichas = query.from(ficha).where(ficha.dtCadastro.between(dtInicial, dtFinal)).fetch();
+			fichas = query.from(ficha).where(ficha.dtCadastro.between(dtInicial, dtFinal)).list(ficha);
 
 		} catch (Exception e) {
 			logger.error("Erro ao buscar ficha por intervalo de data de cadastro", e);

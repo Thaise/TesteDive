@@ -1,21 +1,20 @@
 package br.gov.sc.dive.teste.dao.entidades;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "task")
+@Table(name = "animal")
 public class Animal implements Entidade {
 
 	@Id
@@ -29,11 +28,9 @@ public class Animal implements Entidade {
 	@Column(name = "fl_ativo")
 	private Integer flAtivo = 1;
 	
-
-	@ManyToOne
-	@JoinColumn(name = "id_ficha")
-	private Ficha ficha;
-
+	@ManyToMany(mappedBy = "animais", targetEntity = Ficha.class)
+	private List<Ficha> fichas;
+	
 	public Integer getIdAnimal() {
 		return idAnimal;
 	}
@@ -58,12 +55,12 @@ public class Animal implements Entidade {
 		this.flAtivo = flAtivo;
 	}
 	
-	public Ficha getFicha() {
-		return ficha;
+	public List<Ficha> getFichas() {
+		return fichas;
 	}
 	
-	public void setFicha(Ficha ficha) {
-		this.ficha = ficha;
+	public void setFichas(List<Ficha> fichas) {
+		this.fichas = fichas;
 	}
 
 	@Override

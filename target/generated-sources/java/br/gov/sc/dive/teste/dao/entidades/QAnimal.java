@@ -18,11 +18,9 @@ public class QAnimal extends EntityPathBase<Animal> {
 
     private static final long serialVersionUID = -370907964L;
 
-    private static final PathInits INITS = PathInits.DIRECT2;
-
     public static final QAnimal animal = new QAnimal("animal");
 
-    public final QFicha ficha;
+    public final ListPath<Animal, QAnimal> fichas = this.<Animal, QAnimal>createList("fichas", Animal.class, QAnimal.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> flAtivo = createNumber("flAtivo", Integer.class);
 
@@ -31,24 +29,15 @@ public class QAnimal extends EntityPathBase<Animal> {
     public final StringPath nome = createString("nome");
 
     public QAnimal(String variable) {
-        this(Animal.class, forVariable(variable), INITS);
+        super(Animal.class, forVariable(variable));
     }
 
     public QAnimal(Path<? extends Animal> path) {
-        this(path.getType(), path.getMetadata(), path.getMetadata().isRoot() ? INITS : PathInits.DEFAULT);
+        super(path.getType(), path.getMetadata());
     }
 
     public QAnimal(PathMetadata<?> metadata) {
-        this(metadata, metadata.isRoot() ? INITS : PathInits.DEFAULT);
-    }
-
-    public QAnimal(PathMetadata<?> metadata, PathInits inits) {
-        this(Animal.class, metadata, inits);
-    }
-
-    public QAnimal(Class<? extends Animal> type, PathMetadata<?> metadata, PathInits inits) {
-        super(type, metadata, inits);
-        this.ficha = inits.isInitialized("ficha") ? new QFicha(forProperty("ficha")) : null;
+        super(Animal.class, metadata);
     }
 
 }
