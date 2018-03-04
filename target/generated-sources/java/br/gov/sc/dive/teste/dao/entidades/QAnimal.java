@@ -20,7 +20,7 @@ public class QAnimal extends EntityPathBase<Animal> {
 
     public static final QAnimal animal = new QAnimal("animal");
 
-    public final ListPath<Animal, QAnimal> fichas = this.<Animal, QAnimal>createList("fichas", Animal.class, QAnimal.class, PathInits.DIRECT2);
+    public final ListPath<Ficha, QFicha> fichas = this.<Ficha, QFicha>createList("fichas", Ficha.class, QFicha.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> flAtivo = createNumber("flAtivo", Integer.class);
 

@@ -11,7 +11,6 @@ import com.mysema.query.jpa.impl.JPAQuery;
 
 import br.gov.sc.dive.teste.dao.conexao.ProdutorEntityManager;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
-import br.gov.sc.dive.teste.dao.entidades.QAnimal;
 
 @Stateless
 public class AnimalDao extends AbstractDao<Animal> {
@@ -21,9 +20,11 @@ public class AnimalDao extends AbstractDao<Animal> {
 	public List<Animal> getTodos() {
 		List<Animal> animais = null;
 		try {
-			QAnimal animal = QAnimal.animal;
+			/*QAnimal animal = QAnimal.animal;
 			JPAQuery query = new JPAQuery(getEmPesquisa());
-			animais = query.from(animal).orderBy(animal.nome.asc()).list(animal);
+			animais = query.from(animal).orderBy(animal.nome.asc()).list(animal);*/
+			
+			animais = getEm().createQuery("select a from Animal a where a.flAtivo = 1").getResultList();
 
 		} catch (Exception e) {
 			logger.error("Erro ao buscar animais", e);

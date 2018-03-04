@@ -1,0 +1,33 @@
+<div ng-app="FichaApp"
+	ng-controller="FichaReportController as fichaReport">
+	<section title="Fichas" class="report">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Data Cadastro</th>
+					<th scope="col">Status</th>
+					<th scope="col">Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="f in fichaReport.fichas">
+					<th scope="row">{{f.idFicha}}</th>
+					<td>{{f.dtCadastro | date:"dd/MM/yyyy" }}</td>
+					<td>{{f.flAtivo ? 'Sim' : 'Não'}}</td>
+					<td><a class="btn btn-primary" target="_self"
+						href="ficha_cadastro.html?id={{ f.idFicha }}">Atualizar </a>
+						<button class="btn btn-danger" ng-click="excluir(f)">Excluir</button></td>
+				</tr>
+		</table>
+		
+		
+		<script type="text/javascript" src="resources/js/angular.js"></script>
+		<script type="text/javascript" src="controle/ficha/ficha.module.js"></script>
+		<script type="text/javascript"
+			src="controle/ficha/ficha-cadastro.controller.js"></script>
+		<script type="text/javascript" src="controle/ficha/ficha-report.controller.js"></script>
+		<script type="text/javascript" src="controle/directives.js"></script>
+		
+	</section>
+</div>

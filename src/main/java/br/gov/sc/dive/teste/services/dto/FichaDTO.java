@@ -1,8 +1,10 @@
 package br.gov.sc.dive.teste.services.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -51,6 +53,9 @@ public class FichaDTO implements AbstractDTO{
 	}
 
 	public List<AnimalDTO> getAnimais() {
+		if(animais == null) {
+			animais = new ArrayList<AnimalDTO>();
+		}
 		return animais;
 	}
 
@@ -58,6 +63,7 @@ public class FichaDTO implements AbstractDTO{
 		this.animais = animais;
 	}
 
+	@JsonIgnore
 	@Override
 	public Integer getId() {
 		return this.idFicha;

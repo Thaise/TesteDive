@@ -1,5 +1,7 @@
 package br.gov.sc.dive.teste.services.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class AnimalDTO implements AbstractDTO{
 	private Integer idAnimal;
 
@@ -31,6 +33,7 @@ public class AnimalDTO implements AbstractDTO{
 		this.flAtivo = flAtivo;
 	}
 	
+	@JsonIgnore
 	@Override
 	public Integer getId() {
 		return this.idAnimal;
