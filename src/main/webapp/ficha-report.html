@@ -1,6 +1,27 @@
-<div ng-app="FichaApp"
-	ng-controller="FichaReportController as fichaReport">
+<div ng-app="GeralModule" ng-controller="FichaReportController as fichaReport">
+
 	<section title="Fichas" class="report">
+
+		<div class="alert alert-{{fichaReport.tipoMensagem}}" role="alert">{{fichaReport.mensagemErro}}</div>
+		<form class="form-filtro">
+			<div class="form-inline">
+				<div class="form-group">
+					<label>Id:</label> <input type="text" style="max-width: 50px" ng-model="fichaReport.fichaFiltro.id" class="form-control mx-sm-1">
+				</div>
+				<div class="form-group">
+					<label>Data do cadastro entre: </label> <input type="text" ng-model="fichaReport.fichaFiltro.dtInicial" class="form-control mx-sm-1" placeholder="Data inicial do cadastro"
+						pattern="\d{2}/\d{2}/\d{4}" mask="00/00/0000" maxlength="10">
+				</div>
+				<div class="form-group">
+					<label>e </label> <input type="text" ng-model="fichaReport.fichaFiltro.dtFinal" class="form-control mx-sm-1" placeholder="Data final do cadastro" pattern="\d{2}/\d{2}/\d{4}"
+						mask="00/00/0000" maxlength="10">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary mx-sm-1" ng-click="fichaReport.getFichas()">Buscar</button>
+					<button class="btn btn-secondary" ng-click="fichaReport.limpar()">Limpar</button>
+				</div>
+			</div>
+		</form>
 		<table class="table">
 			<thead>
 				<tr>
@@ -14,20 +35,46 @@
 				<tr ng-repeat="f in fichaReport.fichas">
 					<th scope="row">{{f.idFicha}}</th>
 					<td>{{f.dtCadastro | date:"dd/MM/yyyy" }}</td>
-					<td>{{f.flAtivo ? 'Sim' : 'Não'}}</td>
-					<td><a class="btn btn-primary" target="_self"
-						href="ficha_cadastro.html?id={{ f.idFicha }}">Atualizar </a>
-						<button class="btn btn-danger" ng-click="excluir(f)">Excluir</button></td>
+					<td ng-class="{ativo: f.flAtivo, inativo: !f.flAtivo}">{{f.flAtivo ? 'Ativo' : 'Inativo'}}</td>
+					<td><a class="btn btn-primary" target="_self" href="ficha-cadastro.html?id={{ f.idFicha }}">Atualizar </a>
+						<button class="btn btn-danger" data-toggle="modal" data-target="#modalExcluir" ng-click="fichaReport.setaParaExcluir(f)">Excluir</button></td>
 				</tr>
 		</table>
-		
-		
+		<a class="btn btn-success" target="_self" href="ficha-cadastro.html">Nova Ficha</a>
+
+		<div class="modal fade" id="modalExcluir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Exluir</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Confirma exclusão da <strong>Ficha {{fichaReport.fichaExcluir.idFicha}}?</strong>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+						<button type="button" class="btn btn-primary" ng-click="fichaReport.excluir()" data-dismiss="modal">Sim</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<script type="text/javascript" src="resources/js/angular.js"></script>
 		<script type="text/javascript" src="controle/ficha/ficha.module.js"></script>
-		<script type="text/javascript"
-			src="controle/ficha/ficha-cadastro.controller.js"></script>
-		<script type="text/javascript" src="controle/ficha/ficha-report.controller.js"></script>
+		<script type="text/javascript" src="controle/animal/animal.module.js"></script>
+		<script type="text/javascript" src="controle/geral.module.js"></script>
+		<script type="text/javascript" src="controle/menu.controller.js"></script>
 		<script type="text/javascript" src="controle/directives.js"></script>
-		
+		<script type="text/javascript" src="resources/js/ngMask.min.js"></script>
+		<script type="text/javascript" src="controle/ficha/ficha-report.controller.js"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+
 	</section>
 </div>

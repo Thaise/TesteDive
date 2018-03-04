@@ -13,13 +13,13 @@ Objetivo é criar uma pequena aplicação de exemplo, buscamos com isso analisar
  1-N (Ficha-Animal). O registro da tabela animal podem ser inseridos diretamente no banco de datros através de 
  scripts sql.
 
-=>Tela lista de fichas:
+=>Tela lista de fichas: *
 +Campos de filtro(Inputs, filtros)
  -Id
  -Data de cadastro: campo de período(Dada inicial e final sobre o campo dtCadastro.
  -Botão buscar
 
-+Campos da tabela html
++Campos da tabela html *
  -Id
  -DtCadastro
  -Status
@@ -27,7 +27,7 @@ Objetivo é criar uma pequena aplicação de exemplo, buscamos com isso analisar
  -Botão de deleção
  -Botão novo(Fora da tabela)
 -----------------------------------------------------------------------------------------
-=>Formulário de ficha: Edição(Inputs)
+=>Formulário de ficha: Edição(Inputs) *
  -Id
  -DtCadastro
  -Observação(local onde você descreve o que foi coletado)
@@ -36,7 +36,7 @@ Objetivo é criar uma pequena aplicação de exemplo, buscamos com isso analisar
   -Id;
   -Nome;
 -----------------------------------------------------------------------------------------
-=>Formulário de ficha: Cadastro(Inputs)
+=>Formulário de ficha: Cadastro(Inputs) *
  -Id;
  -DtCadastro;
  -Observação(local onde você descreve o que foi coletado);

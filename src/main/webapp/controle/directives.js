@@ -1,4 +1,4 @@
-angular.module("FichaApp").directive('section', function() {
+angular.module("GeralModule").directive('section', function() {
 	return {
 		transclude : true,
 		scope : {

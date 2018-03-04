@@ -7,15 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name = "animal")
+@NamedQuery(name = Animal.BUSCA_TODOS_ATIVOS, query = "select a from Animal a where a.flAtivo = 1 order by a.nome")
 public class Animal implements Entidade {
+
+	public static final String BUSCA_TODOS_ATIVOS = "Animal.buscaAtivos";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +25,13 @@ public class Animal implements Entidade {
 
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "fl_ativo")
 	private Integer flAtivo = 1;
-	
+
 	@ManyToMany(mappedBy = "animais", targetEntity = Ficha.class)
 	private List<Ficha> fichas;
-	
+
 	public Integer getIdAnimal() {
 		return idAnimal;
 	}
@@ -54,11 +55,11 @@ public class Animal implements Entidade {
 	public void setFlAtivo(Integer flAtivo) {
 		this.flAtivo = flAtivo;
 	}
-	
+
 	public List<Ficha> getFichas() {
 		return fichas;
 	}
-	
+
 	public void setFichas(List<Ficha> fichas) {
 		this.fichas = fichas;
 	}
@@ -104,8 +105,5 @@ public class Animal implements Entidade {
 	public String toString() {
 		return "Animal [idAnimal=" + idAnimal + ", nome=" + nome + ", flAtivo=" + flAtivo + "]";
 	}
-	
-	
 
-	
 }

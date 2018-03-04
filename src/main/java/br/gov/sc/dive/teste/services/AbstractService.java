@@ -11,15 +11,13 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.gov.sc.dive.teste.dao.AbstractDao;
+import br.gov.sc.dive.teste.dao.AbstractModel;
 import br.gov.sc.dive.teste.dao.entidades.Entidade;
 import br.gov.sc.dive.teste.services.dto.AbstractDTO;
 import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
 
 public abstract class AbstractService<T extends AbstractDTO, E extends Entidade> {
-	/*@Inject
-	protected Logger logger;*/
-	
+
 	protected Logger logger = LoggerFactory.getLogger(AbstractService.class);
 
 	protected ModelMapper modelMapper = new ModelMapper();
@@ -57,6 +55,22 @@ public abstract class AbstractService<T extends AbstractDTO, E extends Entidade>
 		}
 		return null;
 	}
+	
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/remove")
+	public Response exclui(T item) {
+		try {
+			E itemEntidade = convertToEntity(item);
+
+			getModel().remove(itemEntidade);
+		} catch (Exception e) {
+			logger.error("Erro ao emover item: " + item, e);
+			throw new ServiceException(e.getMessage());
+		}
+		return null;
+	}
+
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -89,7 +103,7 @@ public abstract class AbstractService<T extends AbstractDTO, E extends Entidade>
 
 	protected abstract void preCadastro(E itemEntidade) throws Exception;
 
-	protected abstract AbstractDao<E> getModel();
+	protected abstract AbstractModel<E> getModel();
 
 	protected abstract Class<E> getClasseEntidade();
 

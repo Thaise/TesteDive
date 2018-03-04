@@ -10,21 +10,21 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.gov.sc.dive.teste.dao.AbstractDao;
-import br.gov.sc.dive.teste.dao.FichaDao;
-import br.gov.sc.dive.teste.dao.FiltroFichaDTO;
+import br.gov.sc.dive.teste.dao.AbstractModel;
+import br.gov.sc.dive.teste.dao.FichaModel;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
 import br.gov.sc.dive.teste.dao.entidades.Ficha;
 import br.gov.sc.dive.teste.services.dto.AnimalDTO;
 import br.gov.sc.dive.teste.services.dto.FichaDTO;
+import br.gov.sc.dive.teste.services.dto.FiltroFichaDTO;
 import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
 
 @Path("/ficha")
 public class FichaService extends AbstractService<FichaDTO, Ficha> {
 
-	@EJB 
-	private FichaDao fichaModel;
-	
+	@EJB
+	private FichaModel fichaModel;
+
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/busca/filtro")
@@ -44,20 +44,20 @@ public class FichaService extends AbstractService<FichaDTO, Ficha> {
 		return fichas;
 	}
 
-	
 	protected Ficha convertToEntity(FichaDTO postDto) throws Exception {
 		Ficha ficha = super.convertToEntity(postDto);
-		if(postDto.getAnimais() != null && !postDto.getAnimais().isEmpty()) {
-			for(AnimalDTO a: postDto.getAnimais()) {
+		if (postDto.getAnimais() != null && !postDto.getAnimais().isEmpty()) {
+			for (AnimalDTO a : postDto.getAnimais()) {
 				ficha.getAnimais().add(modelMapper.map(a, Animal.class));
 			}
 		}
-		
+
 		return ficha;
 	}
+
 	@Override
 	protected void preCadastro(Ficha empresaEntidade) throws Exception {
-		if(empresaEntidade.getIdFicha() == null) {
+		if (empresaEntidade.getIdFicha() == null) {
 			empresaEntidade.setDtCadastro(new Date());
 		}
 	}
@@ -67,9 +67,8 @@ public class FichaService extends AbstractService<FichaDTO, Ficha> {
 		preCadastro(itemEntidade);
 	}
 
-
 	@Override
-	protected AbstractDao<Ficha> getModel() {
+	protected AbstractModel<Ficha> getModel() {
 		return fichaModel;
 	}
 

@@ -9,8 +9,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import br.gov.sc.dive.teste.dao.AbstractDao;
-import br.gov.sc.dive.teste.dao.AnimalDao;
+import br.gov.sc.dive.teste.dao.AbstractModel;
+import br.gov.sc.dive.teste.dao.AnimalModel;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
 import br.gov.sc.dive.teste.services.dto.AnimalDTO;
 import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
@@ -19,7 +19,7 @@ import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
 public class AnimalService extends AbstractService<AnimalDTO, Animal> {
 
 	@EJB
-	private AnimalDao animalModel;
+	private AnimalModel animalModel;
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
@@ -28,6 +28,25 @@ public class AnimalService extends AbstractService<AnimalDTO, Animal> {
 		List<AnimalDTO> animais = new ArrayList<AnimalDTO>();
 		try {
 			List<Animal> animaisBd = animalModel.getTodos();
+			if (animaisBd != null) {
+				for (Animal a : animaisBd) {
+					animais.add(modelMapper.map(a, AnimalDTO.class));
+				}
+			}
+		} catch (Exception e) {
+			logger.error("Erro ao buscar item pelo id: ", e);
+			throw new ServiceException(e.getMessage());
+		}
+		return animais;
+	}
+
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/busca/filtro")
+	public List<AnimalDTO> busca(AnimalDTO filtro) {
+		List<AnimalDTO> animais = new ArrayList<AnimalDTO>();
+		try {
+			List<Animal> animaisBd = animalModel.busca(filtro);
 			if (animaisBd != null) {
 				for (Animal a : animaisBd) {
 					animais.add(modelMapper.map(a, AnimalDTO.class));
@@ -50,7 +69,7 @@ public class AnimalService extends AbstractService<AnimalDTO, Animal> {
 	}
 
 	@Override
-	protected AbstractDao<Animal> getModel() {
+	protected AbstractModel<Animal> getModel() {
 		return animalModel;
 	}
 

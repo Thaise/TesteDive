@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 import br.gov.sc.dive.teste.dao.entidades.Entidade;
 
 
-public abstract class AbstractDao<T extends Entidade> {
+public abstract class AbstractModel<T extends Entidade> {
 	
-	protected Logger logger = LoggerFactory.getLogger(AbstractDao.class);
+	protected Logger logger = LoggerFactory.getLogger(AbstractModel.class);
 
 
 	public void insere(T c) throws Exception {

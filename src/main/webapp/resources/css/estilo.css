@@ -24,6 +24,42 @@ header {
 	margin-top: -75px;
 }
 
+#wrap {
+	min-height: 100%;
+	position: relative;
+}
+
+#body {
+	margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.title{
+	margin-left: 10px;
+}
+
+.atalho {
+	padding-left: 35px;
+	max-width: 400px
+}
+
+.atalho p {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.ativo {
+	color: green;
+}
+
+.inativo {
+	color: red;
+}
+
+.form-obs{
+	font-size: 11px;
+}
+
 footer {
 	text-align: center;
 	padding: 5px;

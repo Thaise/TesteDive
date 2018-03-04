@@ -1,0 +1,61 @@
+<div ng-app="GeralModule" ng-controller="FichaCadastroController as fichaCadastro">
+
+	<section title="Cadastro de Ficha" class="cadastro">
+
+		<div class="alert alert-{{fichaCadastro.tipoMensagem}}" role="alert">{{fichaCadastro.mensagemErro}}</div>
+		<form name="form">
+			<div class="form-group" ng-if="fichaCadastro.ficha.idFicha">
+				<label for="obs">Id: </label> <input readonly type="text" class="form-control" id="id" ng-model="fichaCadastro.ficha.idFicha" />
+			</div>
+			<div class="form-group">
+				<label for="obs">Observação*: </label>
+				<textarea class="form-control" id="obs" placeholder="Observação" ng-model="fichaCadastro.ficha.observacao" required></textarea>
+			</div>
+			<div class="form-group">
+				<label>Status: </label> <input type="radio" name="status" ng-model="fichaCadastro.ficha.flAtivo" ng-value="1" /> Ativo <input type="radio" name="status"
+					ng-model="fichaCadastro.ficha.flAtivo" ng-value="0" /> Inativo
+			</div>
+			<div class="form-group">
+				<label>Selecione os animais: </label> <select class="custom-select" class="selectpicker" multiple size="3" ng-model="fichaCadastro.animaisSelecionados"
+					ng-options="a as a.nome for a in fichaCadastro.animais track by a.idAnimal">
+				</select>
+			</div>
+
+			<div id="animais_cadastrados" ng-if="fichaCadastro.ficha.idFicha">
+				Animais cadastrados nesta Ficha:
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Nome</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="a in fichaCadastro.ficha.animais">
+							<th scope="row">{{a.idAnimal}}</th>
+							<td>{{a.nome}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<p class="form-obs">
+				* Campo obrigatório, o botão <strong>Salvar</strong> ficará desabilitado enquanto o formulário não for preenchido corretamente
+			</p>
+
+			<button class="btn btn-primary" ng-disabled="!form.$valid"  ng-click="fichaCadastro.salvar()">Salvar</button>
+			<button class="btn btn-dark" ng-click="fichaCadastro.voltarAoReport()">Voltar</button>
+		</form>
+
+
+		<script type="text/javascript" src="resources/js/angular.js"></script>
+		<script type="text/javascript" src="controle/ficha/ficha.module.js"></script>
+		<script type="text/javascript" src="controle/animal/animal.module.js"></script>
+		<script type="text/javascript" src="controle/geral.module.js"></script>
+		<script type="text/javascript" src="controle/menu.controller.js"></script>
+		<script type="text/javascript" src="controle/directives.js"></script>
+		<script type="text/javascript" src="resources/js/ngMask.min.js"></script>
+		<script type="text/javascript" src="controle/ficha/ficha-cadastro.controller.js"></script>
+	</section>
+
+</div>
