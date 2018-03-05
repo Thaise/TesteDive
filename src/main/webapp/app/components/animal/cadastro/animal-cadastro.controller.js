@@ -2,7 +2,7 @@ angular
 		.module("AnimalApp")
 		.controller(
 				"AnimalCadastroController",
-				function($scope, $http, $log, urlBase) {
+				function($scope, $http, $log, $stateParams, urlBase) {
 					var vm = this;
 
 					vm.tipoMensagem = "";
@@ -13,8 +13,7 @@ angular
 					vm.$onInit = function() {
 						inicializaAnimal();
 
-						var url = new URL(window.location.href);
-						var id = url.searchParams.get("id");
+						var id = $stateParams.id;
 						if (id) {
 							vm.animal = buscaPeloId(id);
 						}

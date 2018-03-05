@@ -2,7 +2,7 @@ angular
 		.module("FichaApp")
 		.controller(
 				"FichaCadastroController",
-				function($scope, $http, $log, urlBase) {
+				function($scope, $http, $log, $stateParams, urlBase) {
 					var vm = this;
 
 					vm.tipoMensagem = "";
@@ -16,8 +16,7 @@ angular
 						inicializaFicha();
 						getAnimais();
 
-						var url = new URL(window.location.href);
-						var id = url.searchParams.get("id");
+						var id = $stateParams.id;
 						if (id) {
 							vm.ficha = buscaPeloId(id);
 						}
@@ -28,10 +27,6 @@ angular
 							flAtivo : 1,
 							animais : [ {} ]
 						};
-					}
-
-					vm.voltarAoReport = function voltarAoReport() {
-						window.location = "ficha-report.html";
 					}
 
 					function getAnimais() {

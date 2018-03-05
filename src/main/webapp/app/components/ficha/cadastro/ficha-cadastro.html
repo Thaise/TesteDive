@@ -1,15 +1,15 @@
-<div ng-app="GeralModule" ng-controller="FichaCadastroController as fichaCadastro">
+<div ng-controller="FichaCadastroController as fichaCadastro">
 
-	<section title="Cadastro de Ficha" class="cadastro">
-
+	<section class="cadastro">
+		<h3>Cadastro de Fichas</h3>
 		<div class="alert alert-{{fichaCadastro.tipoMensagem}}" role="alert">{{fichaCadastro.mensagemErro}}</div>
 		<form name="form">
 			<div class="form-group" ng-if="fichaCadastro.ficha.idFicha">
 				<label for="obs">Id: </label> <input readonly type="text" class="form-control" id="id" ng-model="fichaCadastro.ficha.idFicha" />
 			</div>
 			<div class="form-group">
-				<label for="obs">ObservaÁ„o*: </label>
-				<textarea class="form-control" id="obs" placeholder="ObservaÁ„o" ng-model="fichaCadastro.ficha.observacao" required></textarea>
+				<label for="obs">Observa√ß√£o*: </label>
+				<textarea class="form-control" id="obs" placeholder="Observa√ß√£o" ng-model="fichaCadastro.ficha.observacao" required></textarea>
 			</div>
 			<div class="form-group">
 				<label>Status: </label> <input type="radio" name="status" ng-model="fichaCadastro.ficha.flAtivo" ng-value="1" /> Ativo <input type="radio" name="status"
@@ -40,22 +40,13 @@
 			</div>
 
 			<p class="form-obs">
-				* Campo obrigatÛrio, o bot„o <strong>Salvar</strong> ficar· desabilitado enquanto o formul·rio n„o for preenchido corretamente
+				* Campo obrigat√≥rio, o bot√£o <strong>Salvar</strong> ficar√° desabilitado enquanto o formul√°rio n√£o for preenchido corretamente
 			</p>
 
-			<button class="btn btn-primary" ng-disabled="!form.$valid"  ng-click="fichaCadastro.salvar()">Salvar</button>
-			<button class="btn btn-dark" ng-click="fichaCadastro.voltarAoReport()">Voltar</button>
+			<button class="btn btn-primary" ng-disabled="!form.$valid" ng-click="fichaCadastro.salvar()">Salvar</button>
+			<a class="btn btn-dark" href="#!/fichas">Voltar </a>
 		</form>
 
-
-		<script type="text/javascript" src="resources/js/angular.js"></script>
-		<script type="text/javascript" src="controle/ficha/ficha.module.js"></script>
-		<script type="text/javascript" src="controle/animal/animal.module.js"></script>
-		<script type="text/javascript" src="controle/geral.module.js"></script>
-		<script type="text/javascript" src="controle/menu.controller.js"></script>
-		<script type="text/javascript" src="controle/directives.js"></script>
-		<script type="text/javascript" src="resources/js/ngMask.min.js"></script>
-		<script type="text/javascript" src="controle/ficha/ficha-cadastro.controller.js"></script>
 	</section>
 
 </div>

@@ -63,11 +63,10 @@ public class FichaModel extends AbstractModel<Ficha> {
 	private Date setTime(Date data, int hora, int minuto) {
 		Calendar c = Calendar.getInstance();
 		c.setTime(data);
-		c.set(Calendar.HOUR, hora);
+		c.set(Calendar.HOUR_OF_DAY, hora);
 		c.set(Calendar.MINUTE, minuto);
 		c.set(Calendar.SECOND, 0);
-
-		return new Date(data.getTime());
+		return c.getTime();
 	}
 
 	public EntityManager getEmPesquisa() {

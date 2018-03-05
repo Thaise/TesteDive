@@ -1,6 +1,12 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/webapp/app/components/animal/cadastro/animal-cadastro.html=UTF-8
+encoding//src/main/webapp/app/components/animal/report/animal-report.html=UTF-8
+encoding//src/main/webapp/app/components/ficha/cadastro/ficha-cadastro.html=UTF-8
+encoding//src/main/webapp/app/components/ficha/report/ficha-report.html=UTF-8
+encoding//src/main/webapp/app/components/home/home.html=UTF-8
+encoding//src/main/webapp/index.html=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/resources=UTF-8
 encoding/<project>=UTF-8
