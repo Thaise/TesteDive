@@ -17,7 +17,7 @@ import br.gov.sc.dive.teste.dao.entidades.Ficha;
 import br.gov.sc.dive.teste.services.dto.AnimalDTO;
 import br.gov.sc.dive.teste.services.dto.FichaDTO;
 import br.gov.sc.dive.teste.services.dto.FiltroFichaDTO;
-import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
+import br.gov.sc.dive.teste.services.exception.ServiceException;
 
 @Path("/ficha")
 public class FichaService extends AbstractService<FichaDTO, Ficha> {

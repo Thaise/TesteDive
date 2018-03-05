@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 import br.gov.sc.dive.teste.dao.AbstractModel;
 import br.gov.sc.dive.teste.dao.entidades.Entidade;
 import br.gov.sc.dive.teste.services.dto.AbstractDTO;
-import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
+import br.gov.sc.dive.teste.services.exception.ServiceException;
 
 public abstract class AbstractService<T extends AbstractDTO, E extends Entidade> {
 

@@ -13,7 +13,7 @@ import br.gov.sc.dive.teste.dao.AbstractModel;
 import br.gov.sc.dive.teste.dao.AnimalModel;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
 import br.gov.sc.dive.teste.services.dto.AnimalDTO;
-import br.gov.sc.dive.teste.services.dto.exception.ServiceException;
+import br.gov.sc.dive.teste.services.exception.ServiceException;
 
 @Path("/animal")
 public class AnimalService extends AbstractService<AnimalDTO, Animal> {

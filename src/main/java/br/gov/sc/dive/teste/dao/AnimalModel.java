@@ -11,9 +11,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-import com.mysema.query.jpa.JPQLQuery;
-import com.mysema.query.jpa.impl.JPAQuery;
-
 import br.gov.sc.dive.teste.dao.conexao.ProdutorEntityManager;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
 import br.gov.sc.dive.teste.dao.entidades.Animal;
